@@ -42,6 +42,21 @@
                         <span class="icon-bar"></span>
                     </a>
                     <a class="brand" href="/">{{ site_name }}</a>
+                    <div id="signin-wrap" class="btn-group pull-right">
+                        {% if not user.is_authenticated %}
+                        <a class="btn" href="{% url site_signin %}" data-bitly-type="bitly_hover_card">Sign In</a>
+                        {% else %}
+                        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" data-bitly-type="bitly_hover_card">
+                            <i class="icon-user"></i> {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.username }}{% endif %}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            {% if user.is_staff %}<li><a href="{% url admin:index %}"><i class="icon-cog"></i> Admin</a></li>{% endif %}
+                            <li class="divider"></li>
+                            <li><a href="{% url site_signout %}" data-bitly-type="bitly_hover_card">Sign Out</a></li>
+                        </ul>
+                        {% endif %}
+                    </div>
                     <div class="nav-collapse">
                         <ul class="nav">
                             <li class="active"><a href="/">Home</a></li>

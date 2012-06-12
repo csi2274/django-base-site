@@ -1,0 +1,42 @@
+{% extends "registration/base_registration.html" %}
+
+
+{% block title %}Sign in{% endblock %}
+{% block body_class %}{{ block.super }} signin_form{% endblock %}
+
+{% block content %}
+    <form class="form-horizontal" action="." method="post" class="signin_form">
+        <fieldset>
+            <legend>Sign in</legend>
+
+            {% if form.non_field_errors %}
+            <div class="alert alert-error">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            <div class="control-group{% if form.username.errors %} error{% endif %}">
+                {% if form.username.errors %}
+                <div class="alert alert-error">{{ form.username.errors }}</div>
+                {% endif %}
+                <label class="control-label" for="username">Username</label>
+                <div class="controls">{{ form.username }}</div>
+            </div>
+
+            <div class="control-group{% if form.password.errors %} error{% endif %}">
+                {% if form.password.errors %}
+                <div class="alert alert-error">{{ form.password.errors }}</div>
+                {% endif %}
+                <label class="control-label" for="password">Password</label>
+                <div class="controls">{{ form.password }}</div>
+            </div>
+        </fieldset>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+            <button class="btn" onClick="this.form.reset(); return false;">Cancel</button>
+            {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+        </div>
+
+        {% csrf_token %}
+
+    </form>
+{% endblock %}

@@ -5,6 +5,7 @@ from armstrong.apps.articles.models import Article
 from armstrong.apps.articles.views import ArticleFeed
 from django.views.generic.list_detail import object_detail
 from django.conf import settings
+from django.contrib.auth import views as auth_views
 # ADMIN_BASE is the base URL for your Armstrong admin.  It is highly
 # recommended that you change this to a different URL unless you enforce a
 # strict password-strength policy for your users.
@@ -58,6 +59,11 @@ urlpatterns = patterns('',
                         'slug_field': 'slug',
                     },
             name='article_detail'),
+
+    # Login / Logout
+    url(r'^accounts/signin/$', auth_views.login, {'template_name': 'registration/signin.html'}, name='site_signin'),
+    url(r'^accounts/signout/$', auth_views.logout, {'template_name': 'registration/signout.html'}, name='site_signout'),
+
 )
 
 # Uncomment the following two lines if you want to expose our default API

@@ -205,6 +205,10 @@ COMPRESS_OUTPUT_DIR = 'cache'
 # GRAPPELLI_ADMIN_HEADLINE = '%s Administration' % SITE_NAME
 # GRAPPELLI_ADMIN_TITLE = '%s Administration' % SITE_NAME
 
+# LOGIN SETTINGS
+LOGIN_URL = '/accounts/signin/'
+LOGIN_REDIRECT_URL = '/'
+
 # ARMSTRONG SETTINGS
 ARMSTRONG_IMAGES_UPLOAD_PATH = 'armstrong/images/'
 ARMSTRONG_SECTION_ITEM_MODEL = 'armstrong.apps.content.models.Content'
