@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% load layout_helpers %}
+
+{% block base_content %}
+    {% render_iter well.items|slice:":15" %}
+        {% render_next "big" %}
+        {% render_next "big" %}
+        {% render_next "standard" %}
+        {% render_next "standard" %}
+        {% render_next "standard" %}
+        {% render_remainder "half" %}
+    {% endrender_iter %}
+{% endblock %}

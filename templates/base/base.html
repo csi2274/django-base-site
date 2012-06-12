@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>{% load section_helpers %}
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -47,6 +47,7 @@
                             <li class="active"><a href="/">Home</a></li>
                             <li><a href="/#about">About</a></li>
                             <li><a href="/#contact">Contact</a></li>
+                            {% section_menu section_view='section_view' template='arm_sections/main_nav_menu.html' %}
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -72,7 +73,15 @@
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script src="{{ STATIC_URL }}js/bootstrap/bootstrap.min.js"></script>{% endblock bottom_script %}
+        <script src="{{ STATIC_URL }}js/bootstrap/bootstrap.min.js"></script>
+        <script>
+        jQuery('ul.nav li.dropdown').hover(function() {
+          jQuery(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn();
+        }, function() {
+          jQuery(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut();
+        });
+        </script>
+        {% endblock bottom_script %}
 
     </body>
 </html>

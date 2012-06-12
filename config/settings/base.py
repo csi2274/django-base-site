@@ -76,7 +76,7 @@ STATIC_URL = '/static/'
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = '%sgrappelli/' % STATIC_URL
+ADMIN_MEDIA_PREFIX = '%sadmin/' % STATIC_URL
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -95,7 +95,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = ''
+SECRET_KEY = 'i-%ub0rw(wgy(@7r_cn9noy@2u0!lt8-p=8*4wa3n#sndl%uxd'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -112,7 +112,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'config.urls'
+ROOT_URLCONF = 'config.urls.production'
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
@@ -137,11 +137,29 @@ DJANGO_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'grappelli',
+    # 'grappelli',
     'django.contrib.admin',
 )
 
 THIRDPARTY_APPS = (
+    # Armstrong Apps and Requirements
+    'armstrong.core.arm_access',
+    'armstrong.core.arm_content',
+    'armstrong.core.arm_layout',
+    'armstrong.core.arm_sections',
+    'armstrong.core.arm_wells',
+    'armstrong.apps.articles',
+    'armstrong.apps.content',
+    'armstrong.apps.images',
+    'armstrong.apps.related_content',
+    'armstrong.hatband',
+    'mptt',
+    'reversion',
+    'sorl.thumbnail',
+    'taggit',
+
+    # Other Apps
+    'south',
     'compressor',
 )
 
@@ -184,5 +202,14 @@ COMPRESS_OUTPUT_DIR = 'cache'
 # )
 
 # django-grappelli settings
-GRAPPELLI_ADMIN_HEADLINE = '%s Administration' % SITE_NAME
-GRAPPELLI_ADMIN_TITLE = '%s Administration' % SITE_NAME
+# GRAPPELLI_ADMIN_HEADLINE = '%s Administration' % SITE_NAME
+# GRAPPELLI_ADMIN_TITLE = '%s Administration' % SITE_NAME
+
+# ARMSTRONG SETTINGS
+ARMSTRONG_IMAGES_UPLOAD_PATH = 'armstrong/images/'
+ARMSTRONG_SECTION_ITEM_MODEL = 'armstrong.apps.content.models.Content'
+ARMSTRONG_PRESETS = {
+    'article_head': {'width': 600},
+    'article_half': {'width': 270},
+    'article_small': {'width': 175},
+}
